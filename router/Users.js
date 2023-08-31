@@ -15,6 +15,11 @@ const {
     News_Feed
 } = require('../controller/Following')
 
+const {
+    Comment_users,
+    See_Comments_on_Post
+} = require('../controller/Comments')
+
 // user api start here
 router.post('/create_new_User' , Register_New_User);
 router.post('/login' ,  LoginRegisteredUser);
@@ -28,5 +33,12 @@ router.get("/getallpost" ,verifyToken , Get_All_Post )
 router.post('/following' ,verifyToken , Follow_Users ); 
 router.get('/news-feed' ,verifyToken , News_Feed );
 /** Following User api end here  */
+
+/** Comments api start here  */
+router.post('/comment' ,verifyToken , Comment_users ); 
+router.get('/getcomments' ,verifyToken , See_Comments_on_Post );
+/** Comments api end here  */
+
+
 
 module.exports = router
