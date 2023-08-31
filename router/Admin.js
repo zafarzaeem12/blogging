@@ -18,6 +18,8 @@ const {
     create_Posts,
     Update_Posts,
     Delete_Posts,
+    Get_All_Post,
+    SpecficPost
 } = require("../controller/Posts")
 
 
@@ -38,8 +40,8 @@ router.post("/deleteCategory/:id" ,verifyToken ,DeleteCategory )
 
 /** Posts api start here  */
 router.post("/createPost" , File.user ,verifyToken ,create_Posts )
-// router.get("/getallcategory" ,verifyToken , getCategory )
-// router.get("/get/:id" ,verifyToken ,SpecficCategory )
+router.get("/getallpost" ,verifyToken , Get_All_Post )
+router.get("/gets/:id" ,verifyToken ,SpecficPost )
 router.put("/updatePost/:id" , File.user , verifyToken ,Update_Posts )
 router.delete("/deletePost/:id" ,verifyToken ,Delete_Posts )
 /** Posts api end here  */

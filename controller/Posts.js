@@ -61,7 +61,27 @@ const Update_Posts = async (req, res, next) => {
       res.status(500).send({ message: "Error updating post" });
     }
   };
-  
+
+const SpecficPost = async (req,res,next) => {
+try{
+    const getpost = await Posts
+    .findOne({ _id : req.params.id })
+    .populate({path :'createdby' , select:"-password -user_authentication" })
+    .populate('Category')
+    res.status(200).send({ message : "All Post Fetched" , data : getpost})
+}catch(err){
+   res.status(404).send({ message : "no post found"})
+}
+}
+
+const Get_All_Post = async (req,res,next) => {
+try{
+    const allpost = await Posts.find()
+    res.status(200).send({ total : allpost.length , message : "All Post Fetched" , data : allpost})
+}catch(err){
+res.status(404).send({ message : "No Posts Fetched"})
+}
+}
   
 const Delete_Posts = async (req, res, next) => {
     console.log(req.params.id)
@@ -90,4 +110,6 @@ module.exports = {
     create_Posts,
     Update_Posts,
     Delete_Posts,
+    Get_All_Post,
+    SpecficPost
 }
