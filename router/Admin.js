@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const verifyToken = require('../middleware/authenticate');
-//const File = require('../middleware/ImagesandVideosData');
+const {verifyToken} = require('../middleware/authenticate');
+const File = require('../middleware/ImagesandVideosData');
 const { 
     Register_New_User ,
     LoginRegisteredUser 
@@ -13,6 +13,12 @@ const {
     UpdateCategory,
     DeleteCategory
 } = require("../controller/Categories")
+
+const {
+    create_Posts,
+    Update_Posts,
+    Delete_Posts,
+} = require("../controller/Posts")
 
 
 // user api start here
@@ -29,6 +35,14 @@ router.get("/get/:id" ,verifyToken ,SpecficCategory )
 router.put("/updateCategory/:id" ,verifyToken ,UpdateCategory )
 router.post("/deleteCategory/:id" ,verifyToken ,DeleteCategory )
 /** Category api end here  */
+
+/** Posts api start here  */
+router.post("/createPost" , File.user ,verifyToken ,create_Posts )
+// router.get("/getallcategory" ,verifyToken , getCategory )
+// router.get("/get/:id" ,verifyToken ,SpecficCategory )
+router.put("/updatePost/:id" , File.user , verifyToken ,Update_Posts )
+router.delete("/deletePost/:id" ,verifyToken ,Delete_Posts )
+/** Posts api end here  */
 
 
 module.exports = router

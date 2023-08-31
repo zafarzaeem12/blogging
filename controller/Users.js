@@ -45,11 +45,12 @@ const Register_New_User = async (req, res) => {
             req.body.password,
             process.env.SECRET_KEY
           ).toString(),
-          username : req.body.username
+          username : req.body.username,
+          role : req.body.role
         };
         const Register = await User.create(newUser);
   
-        const { password , ...others } = Register;
+        const { password , ...others } = Register._doc;
   
         
         return res.status(201).send({

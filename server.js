@@ -13,7 +13,7 @@ app.use(cors());
 
 // routes start here
 app.use("/api/", UserRouter);
-app.use("/Adminapi/", AdminRouter);
+app.use("/Admin/api/", AdminRouter);
 
 dotenv.config();
 

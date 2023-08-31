@@ -7,12 +7,12 @@ const PostSchema = new mongoose.Schema({
     description: {
         type: String,
     },
+    image : {
+        type: String,
+    },
     createdby: {
         type: mongoose.Schema.Types.ObjectId,
         ref : 'User'
-    },
-    image : {
-        type: String,
     },
     Category: {
         type: mongoose.Schema.Types.ObjectId,

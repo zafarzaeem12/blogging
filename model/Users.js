@@ -19,6 +19,10 @@ const UserSchema = new mongoose.Schema({
         unique: true,
         required: true
     },
+    user_authentication:{
+        type : String,
+        default : ""
+    }
     
 },
     { timestamps: true }

@@ -14,13 +14,13 @@ try {
     token = req.headers['authorization'].split(' ')[1]
 
     //verify token
-    const decoded = jwt.verify(token, process.env.JWT_KEY)
+    const decoded = jwt.verify(token, process.env.SECRET_KEY)
 
     // console.log('token ** ', decoded);
 
     //Get user from the token
-    req.userId= decoded.userId
-    req.user = await User.findById(decoded.userId).select('-password')
+    req.id = decoded.id
+    req.user = await User.findById(req.id).select('-password')
   if(!req.user){
         return res.status(401).send({ status: 0, message: 'Unauthorized' });
     }
